@@ -1,12 +1,18 @@
 ---
 title: Cold Archive - Présentation
 excerpt: Découvrez le service, ses fonctionnalités et sa facturation
-updated: 2023-01-29
+updated: 2023-12-20
 ---
+
+<style>
+.w-100 {
+    width:100% !important;
+}
+</style>
 
 ## Objectif
 
-OVHcloud Cold Archive est une classe de stockage conçue pour un stockage à long terme des données non utilisées.
+OVHcloud Cold Archive est une classe de stockage conçue pour un stockage à long terme des données rarement utilisées.
 
 Ses principales caractéristiques sont :
 
@@ -39,13 +45,13 @@ Le service vous permet de vous concentrer sur la création et le déploiement d'
 
 Le service est entièrement géré par OVHcloud et accessible via l'API S3.
 
-**Opération en 3 étapes**
+**3 opérations possibles**
 
-1. Stockez d'abord vos données dans un bucket de la région RBX.
-2. Archivez-le sur des bandes.
-3. Restaurez vos données ou/et supprimez votre archive.
+1. Archivage
+2. Restauration
+3. Suppression
 
-![Cold Archive concept](images/cold_archive_overview-20230117154349550.png){.thumbnail}
+![Cold Archive concept](images/cold_archive_overview-20230117154349550.png){.w-100}
 
 ## Téléchargement des données
 
@@ -71,9 +77,11 @@ Vous pouvez suivre les différentes étapes du stockage de vos données via le s
 | **`Archiving`** | Archivage en cours sur bandes. | Liste | <48h | Archive |
 | **`Archived`** | Objets archivés sur bandes uniquement. | Liste | illimité | Archive |
 | **`Restoring`** | Restauration en cours à partir des bandes. | Liste | <48h | Archive |
-| **`Restored`** | Objets restaurés et accessibles. | Lecture seule + Liste | 30 jours | Archive |
+| **`Restored`** | Objets restaurés et accessibles. | Lecture seule + Liste | *(les données sont disponibles pendant)*<br>30 jours | Archive |
 | **`Deleting`** | Suppression des objets des bandes (et des disques si restaurés) en cours. | Liste | <48h | Archive |
 | **`Flushed`** | Le bucket est vide et peut être retiré en toute sécurité. | Liste (bucket vide) | N / A | Archive |
+
+![lifecycle](images/lifecycle.png)
 
 ## Performances réseau, téléchargement et récupération
 
